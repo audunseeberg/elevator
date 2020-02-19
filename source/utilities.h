@@ -12,3 +12,5 @@
  */
 int read_current_floor_and_set_floor_light();
 
+void clear_all_orders();
+
