@@ -40,7 +40,7 @@ void del_all_orders_on_floor(int floor){
 }
 
 bool check_queue_for_order(int floor, HardwareOrder type){
-    int order_int = order_to_int_encoding(int floor, HardwareOrder type);
+    int order_int = order_to_int_encoding(floor, type);
     for (int i = 0;i < 10;i++) {
         if (orders[i] == order_int) {
             return 1;
@@ -50,7 +50,9 @@ bool check_queue_for_order(int floor, HardwareOrder type){
 }
 
 bool check_for_stop(int floor, HardwareMovement direction){
-    
+    if (check_queue_for_order(floor, direction) || check_queue_for_order(floor, 1)){
+        return 1;
+    }
 }
 
 bool check_if_queue_empty(){
