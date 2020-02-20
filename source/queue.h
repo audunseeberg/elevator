@@ -22,7 +22,7 @@ int order_to_int_encoding(int floor, HardwareOrder type);
 void add_order(int floor, HardwareOrder type);
 
 /**
- * @brief Deletes all orders in the queue on specified floor.
+ * @brief Deletes all orders in the queue on specified floor and restacks the queue.
  * 
  * @param floor Floor to delete orders on.
  */

@@ -4,6 +4,7 @@
 int orders[10];
 
 int orders[10] = {-1};
+int array_size = (sizeof(orders)/sizeof(orders[0]));
 
 int order_to_int_encoding(int floor, HardwareOrder type){
     return (floor-1)*3+(int)type;
@@ -43,23 +44,9 @@ bool check_queue_for_order(int floor, HardwareOrder type){
 }
 
 bool check_for_stop(int floor, HardwareMovement direction){
-
+    
 }
 
 bool check_if_queue_empty(){
-
-}
-
-int main(){
-    int o[10] = {0, 8, 5, 6, 4, -1, 3, 7, -1, 10};
-    int next_in_queue = 0;
-    int array_size = (sizeof(o)/sizeof(o[0]));
-    for (int c = 0; c < array_size; c++){
-        if (o[c] != -1){
-            o[next_in_queue++] = o[c];
-        }  
-    }
-    while (next_in_queue < array_size) {
-        o[next_in_queue++] = -1;
-    }
+    return orders[0] == -1 ? 1 : 0;
 }
