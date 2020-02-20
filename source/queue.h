@@ -1,9 +1,5 @@
 #include "hardware.h"
 
-struct order {
-    HardwareOrder orderType;
-    int floor;
-};
 
 void add_order(int floor, HardwareOrder type);
 
