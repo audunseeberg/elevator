@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include "queue.h"
+int orders[10];
 
 int orders[10] = {-1};
 
@@ -9,6 +10,11 @@ int order_to_int_encoding(int floor, HardwareOrder type){
 }
 
 void add_order(int floor, HardwareOrder type){
+	for (int i = 9;i > -1;i--) {
+		if (orders[i] != -1) {
+			orders[i + 1] = (((floor-1) * 3) + (int)type);
+		}
+	}
 
 }
 
