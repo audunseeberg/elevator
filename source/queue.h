@@ -2,7 +2,9 @@
  * @file
  * @brief Implements queue system for orders
  */
+#include <stdbool.h>
 #include "hardware.h"
+
 
 /**
  * @brief Encodes order to corresponding int
@@ -21,7 +23,7 @@ int order_to_int_encoding(int floor, HardwareOrder type);
  * @param orders Pointer to queue
  * @param array_size Size of array
  */
-void add_order(int floor, HardwareOrder type, int* orders, int array_size);
+void add_order(int floor, HardwareOrder type, int (*orders)[10], int array_size);
 
 /**
  * @brief Deletes all orders in the queue on specified floor and restacks the queue.
@@ -30,7 +32,15 @@ void add_order(int floor, HardwareOrder type, int* orders, int array_size);
  * @param orders Pointer to queue
  * @param array_size Size of array
  */
-void del_all_orders_on_floor(int floor, int* orders, int array_size);
+void del_all_orders_on_floor(int floor, int (*orders)[10], int array_size);
+
+/**
+ * @brief Deletes all orders in queue
+ * 
+ * @param orders Pointer to queue
+ * @param array_size Size of queue array 
+ */
+void del_all_orders(int (*orders)[10], int array_size);
 
 /**
  * @brief Checks if a specified order is in the queue.
@@ -40,7 +50,7 @@ void del_all_orders_on_floor(int floor, int* orders, int array_size);
  * @param orders Pointer to queue
  * @return 1 if order in queue. 0 otherwise 
  */
-bool check_queue_for_order(int floor, HardwareOrder type, int* orders);
+bool check_queue_for_order(int floor, HardwareOrder type, int (*orders)[10]);
 
 
 
@@ -52,7 +62,7 @@ bool check_queue_for_order(int floor, HardwareOrder type, int* orders);
  * @param orders Pointer to queue
  * @return 1 if elevator should stop. 0 otherwise.
  */
-bool check_for_stop(int floor, HardwareMovement direction, int* orders);
+bool check_for_stop(int floor, HardwareMovement direction, int (*orders)[10]);
 
 
 /**
@@ -61,4 +71,4 @@ bool check_for_stop(int floor, HardwareMovement direction, int* orders);
  * @param orders Pointer to queue.
  * @return 1 if queue empty. 0 otherwise.
  */
-bool check_if_queue_empty(int* orders);
+bool check_if_queue_empty(int (*orders)[10]);

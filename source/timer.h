@@ -22,4 +22,4 @@ void set_timer_duration(int time_in_ms);
  * @return 0 if the obstruction button or stop button is pushed. 
  * 1 otherwise (after timer_duration milliseconds).
  */
-int start_timer(int* orders, int array_size);
+int start_timer(int (*orders)[10], int array_size);

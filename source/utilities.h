@@ -12,7 +12,7 @@
  */
 int read_current_floor_and_set_floor_light();
 
-void poll_orders_and_add_to_queue();
+void poll_orders_and_add_to_queue(int (*orders)[10], int array_size);
 
 void clear_all_order_lights();
 

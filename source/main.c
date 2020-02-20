@@ -28,10 +28,11 @@ int main(){
 
     states current_state = elevator_init(); 
     
-    int current_floor = read_current_floor_and_set_floor_light; 
+    int current_floor = read_current_floor_and_set_floor_light(); 
 
     int door_state = 0;
 
+    int target_floor;
 
     while(1){
 
@@ -40,12 +41,12 @@ int main(){
         case IDLE:
             hardware_command_movement(HARDWARE_MOVEMENT_STOP);
             if (hardware_read_stop_signal()){
-                del_all_orders();
+                del_all_orders(&orders, array_size);
                 clear_all_order_lights();
                 hardware_command_stop_light(1);
                 if (read_current_floor_and_set_floor_light()){
                     hardware_command_door_open(1);
-                    door_state = start_timer(&orders, array_size );
+                    door_state = start_timer(&orders, array_size);
                     hardware_command_door_open(door_state);
                     break;
                 }
@@ -59,7 +60,7 @@ int main(){
             poll_orders_and_add_to_queue(&orders, array_size);
             
             if (!check_if_queue_empty(&orders)){
-                int target_floor = (orders[0]/3)+1;
+                target_floor = (orders[0]/3)+1;
                 if (target_floor > current_floor){
                     current_state = GOING_UP;
                     break;
@@ -79,7 +80,7 @@ int main(){
 
         case GOING_UP:
             if (hardware_read_stop_signal()){
-                del_all_orders();
+                del_all_orders(&orders, array_size);
                 clear_all_order_lights();
                 hardware_command_stop_light(1);
                 current_state = IDLE;
@@ -89,7 +90,7 @@ int main(){
             poll_orders_and_add_to_queue(&orders, array_size);
             if (read_current_floor_and_set_floor_light()){
                 current_floor = read_current_floor_and_set_floor_light();
-                if(check_for_stop(current_floor, HARDWARE_MOVEMENT_UP, &orders)){
+                if(check_for_stop(current_floor, HARDWARE_MOVEMENT_UP, &orders) || current_floor == target_floor){
                     current_state = ORDER_EXPEDITION;
                     break;
                 }
@@ -98,7 +99,7 @@ int main(){
         
         case GOING_DOWN:
             if (hardware_read_stop_signal()){
-                del_all_orders();
+                del_all_orders(&orders, array_size);
                 clear_all_order_lights();
                 hardware_command_stop_light(1);
                 current_state = IDLE;
@@ -108,7 +109,7 @@ int main(){
             poll_orders_and_add_to_queue(&orders, array_size);
             if (read_current_floor_and_set_floor_light()){
                 current_floor = read_current_floor_and_set_floor_light();
-                if(check_for_stop(current_floor, HARDWARE_MOVEMENT_DOWN, &orders)){
+                if(check_for_stop(current_floor, HARDWARE_MOVEMENT_DOWN, &orders) || current_floor == target_floor){
                     current_state = ORDER_EXPEDITION;
                     break;
                 }
@@ -117,7 +118,7 @@ int main(){
         
         case ORDER_EXPEDITION:
             if (hardware_read_stop_signal()){
-                del_all_orders();
+                del_all_orders(&orders, array_size);
                 clear_all_order_lights();
                 hardware_command_stop_light(1);
                 current_state = IDLE;
@@ -126,14 +127,14 @@ int main(){
             hardware_command_movement(HARDWARE_MOVEMENT_STOP);
             door_state = 1;
             hardware_command_door_open(door_state);
-            del_all_orders_on_floor(current_floor, orders, array_size);
-            door_state = start_timer(&orders, array_size );
+            del_all_orders_on_floor(current_floor, &orders, array_size);
+            door_state = start_timer(&orders, array_size);
             hardware_command_door_open(door_state);
             if (door_state){
                 break;
             }
             if (!check_if_queue_empty(&orders)){
-                int target_floor = (orders[0]/3)+1;
+                target_floor = (orders[0]/3)+1;
                 if (target_floor > current_floor){
                     current_state = GOING_UP;
                         break;
@@ -148,10 +149,11 @@ int main(){
         
         default:
             current_state = elevator_init();
-            del_all_orders();
+            del_all_orders(&orders, array_size);
             clear_all_order_lights();
             break;
         }
     }
+    }   
     return 0;
 }

@@ -4,3 +4,13 @@ source/queue
 /.vs/elevator/v16/ipch/AutoPCH/e625df5998cce6e
 /.vs/elevator/v16
 /.vs
+elevator
+.vscode/launch.json
+.vscode/tasks.json
+build/libdriver.a
+build/main.o
+build/queue.o
+build/timer.o
+build/utilities.o
+build/driver/hardware.o
+build/driver/io.o

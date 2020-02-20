@@ -15,7 +15,7 @@ int read_current_floor_and_set_floor_light() {
     return 0;
 }
 
-void poll_orders_and_add_to_queue(int* orders, int array_size) {
+void poll_orders_and_add_to_queue(int (*orders)[10], int array_size) {
     for(int f = 0; f < HARDWARE_NUMBER_OF_FLOORS; f++){
         for(int i = 0; i < 3; i++){
             if(hardware_read_order(f, i) && !check_queue_for_order(f, i, orders)){
