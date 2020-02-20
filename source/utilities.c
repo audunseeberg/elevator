@@ -2,6 +2,7 @@
 #include <stdbool.h>
 #include "hardware.h"
 #include "queue.h"
+#include "utilities.h"
 
 
 int read_current_floor_and_set_floor_light() {
@@ -31,4 +32,12 @@ void clear_all_order_lights(){
             hardware_command_order_light(f, i, 0);
         }
     }
+}
+
+states elevator_init(){
+    while (!read_current_floor_and_set_floor_light()){
+        hardware_command_movement(HARDWARE_ORDER_DOWN);
+    }
+    hardware_command_movement(HARDWARE_MOVEMENT_STOP);
+    return IDLE;
 }

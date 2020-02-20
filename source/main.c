@@ -38,6 +38,7 @@ int main(){
         switch (current_state)
         {
         case IDLE:
+            hardware_command_movement(HARDWARE_MOVEMENT_STOP);
             if (hardware_read_stop_signal()){
                 del_all_orders();
                 clear_all_order_lights();
@@ -84,6 +85,15 @@ int main(){
                 current_state = IDLE;
                 break;
             }
+            hardware_command_movement(HARDWARE_MOVEMENT_UP);
+            poll_orders_and_add_to_queue(&orders, array_size);
+            if (read_current_floor_and_set_floor_light()){
+                current_floor = read_current_floor_and_set_floor_light();
+                if(check_for_stop(current_floor, HARDWARE_MOVEMENT_UP, &orders)){
+                    current_state = ORDER_EXPEDITION;
+                    break;
+                }
+            }
             break;
         
         case GOING_DOWN:
@@ -93,6 +103,15 @@ int main(){
                 hardware_command_stop_light(1);
                 current_state = IDLE;
                 break;
+            }
+            hardware_command_movement(HARDWARE_MOVEMENT_DOWN);
+            poll_orders_and_add_to_queue(&orders, array_size);
+            if (read_current_floor_and_set_floor_light()){
+                current_floor = read_current_floor_and_set_floor_light();
+                if(check_for_stop(current_floor, HARDWARE_MOVEMENT_DOWN, &orders)){
+                    current_state = ORDER_EXPEDITION;
+                    break;
+                }
             }
             break;
         
@@ -104,6 +123,7 @@ int main(){
                 current_state = IDLE;
                 break;
             }
+            hardware_command_movement(HARDWARE_MOVEMENT_STOP);
             door_state = 1;
             hardware_command_door_open(door_state);
             del_all_orders_on_floor(current_floor, orders, array_size);
@@ -128,60 +148,10 @@ int main(){
         
         default:
             current_state = elevator_init();
+            del_all_orders();
+            clear_all_order_lights();
             break;
         }
     }
-    // printf("=== Example Program ===\n");
-    // printf("Press the stop button on the elevator panel to exit\n");
-
-    // hardware_command_movement(HARDWARE_MOVEMENT_UP);
-
-    // while(1){
-    //     if(hardware_read_stop_signal()){
-    //         hardware_command_movement(HARDWARE_MOVEMENT_STOP);
-    //         break;
-    //     }
-
-    //     if(hardware_read_floor_sensor(0)){
-    //         hardware_command_movement(HARDWARE_MOVEMENT_UP);
-    //     }
-    //     if(hardware_read_floor_sensor(HARDWARE_NUMBER_OF_FLOORS - 1)){
-    //         hardware_command_movement(HARDWARE_MOVEMENT_DOWN);
-    //     }
-
-    //     /* All buttons must be polled, like this: */
-    //     for(int f = 0; f < HARDWARE_NUMBER_OF_FLOORS; f++){
-    //         if(hardware_read_order(f, HARDWARE_ORDER_INSIDE)){
-    //             hardware_command_floor_indicator_on(f);
-    //         }
-    //     }
-
-    //     /* Lights are set and cleared like this: */
-    //     for(int f = 0; f < HARDWARE_NUMBER_OF_FLOORS; f++){
-    //         /* Internal orders */
-    //         if(hardware_read_order(f, HARDWARE_ORDER_INSIDE)){
-    //             hardware_command_order_light(f, HARDWARE_ORDER_INSIDE, 1);
-    //         }
-
-    //         /* Orders going up */
-    //         if(hardware_read_order(f, HARDWARE_ORDER_UP)){
-    //             hardware_command_order_light(f, HARDWARE_ORDER_UP, 1);
-    //         }
-
-    //         /* Orders going down */
-    //         if(hardware_read_order(f, HARDWARE_ORDER_DOWN)){
-    //             hardware_command_order_light(f, HARDWARE_ORDER_DOWN, 1);
-    //         }
-    //     }
-
-    //     if(hardware_read_obstruction_signal()){
-    //         hardware_command_stop_light(1);
-    //         clear_all_order_lights();
-    //     }
-    //     else{
-    //         hardware_command_stop_light(0);
-    //     }
-    // }
-
     return 0;
 }
