@@ -3,6 +3,7 @@
 #include <stdbool.h>
 #include <time.h>
 #include "timer.h"
+#include "hardware.h"
 
 int timer_duration;
 
@@ -17,7 +18,7 @@ int startTimer(){
     do {
         clock_t time_diff = clock() - start_time;
         time_passed = time_diff * 1000 / CLOCKS_PER_SEC;
-        if (hardware_obstruction_signal() || hardware_read_stop_sigal()){
+        if (hardware_read_obstruction_signal() || hardware_read_stop_signal()){
             return 0;
         }
 
