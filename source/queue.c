@@ -25,6 +25,7 @@ void del_all_orders_on_floor(int floor, int* orders, int array_size){
             if ((orders[i] = order_to_int_encoding(floor, j))){
                 orders[i] = -1;
             }
+            hardware_command_order_light(floor, j, 0);
         }
     }
     int next_in_queue = 0;                                          //restacks the queue to place valid *orders first
