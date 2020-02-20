@@ -56,16 +56,3 @@ bool check_if_queue_empty(){
 
 }
 
-int main(){
-    int o[10] = {0, 8, 5, 6, 4, -1, 3, 7, -1, 10};
-    int next_in_queue = 0;
-    int array_size = (sizeof(o)/sizeof(o[0]));
-    for (int c = 0; c < array_size; c++){
-        if (o[c] != -1){
-            o[next_in_queue++] = o[c];
-        }  
-    }
-    while (next_in_queue < array_size) {
-        o[next_in_queue++] = -1;
-    }
-}
