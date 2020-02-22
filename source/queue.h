@@ -50,7 +50,7 @@ void del_all_orders(int (*orders)[10], int array_size);
  * @param orders Pointer to queue
  * @return 1 if order in queue. 0 otherwise 
  */
-bool check_queue_for_order(int floor, HardwareOrder type, int (*orders)[10]);
+bool check_queue_for_order(int floor, HardwareOrder type, int (*orders)[10], int array_size);
 
 
 
@@ -62,7 +62,7 @@ bool check_queue_for_order(int floor, HardwareOrder type, int (*orders)[10]);
  * @param orders Pointer to queue
  * @return 1 if elevator should stop. 0 otherwise.
  */
-bool check_for_stop(int floor, HardwareMovement direction, int (*orders)[10]);
+bool check_for_stop(int floor, HardwareMovement direction, int (*orders)[10], int array_size);
 
 
 /**

@@ -18,7 +18,7 @@ int read_current_floor_and_set_floor_light() {
 void poll_orders_and_add_to_queue(int (*orders)[10], int array_size) {
     for(int f = 0; f < HARDWARE_NUMBER_OF_FLOORS; f++){
         for(int i = 0; i < 3; i++){
-            if(hardware_read_order(f, i) && !check_queue_for_order(f, i, orders)){
+            if(hardware_read_order(f, i) && !check_queue_for_order(f, i, orders, array_size)){
                 add_order(f, i, orders, array_size);
                 hardware_command_order_light(f, i, 1);
             }
@@ -34,7 +34,10 @@ void clear_all_order_lights(){
     }
 }
 
+
 states elevator_init(){
+    clear_all_order_lights();
+
     while (!read_current_floor_and_set_floor_light()){
         hardware_command_movement(HARDWARE_ORDER_DOWN);
     }
