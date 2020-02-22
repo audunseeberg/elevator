@@ -34,6 +34,8 @@ int main(){
 
     int target_floor;
 
+    set_timer_duration(3000);
+
     while(1){
 
         switch (current_state)

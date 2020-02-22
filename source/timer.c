@@ -29,3 +29,14 @@ int start_timer(int (*orders)[10], int array_size){
 
     return 0;
 };
+
+int main(){
+    int orders[10] = { [0 ... 9] =-1 };
+    int array_size = (sizeof(orders)/sizeof(orders[0]));
+    set_timer_duration(10000);
+    if (!start_timer(&orders, array_size)){
+        printf("did the thing");
+    }
+
+    return 0;
+}
