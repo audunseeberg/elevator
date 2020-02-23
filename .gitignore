@@ -15,3 +15,5 @@ build/utilities.o
 build/driver/hardware.o
 build/driver/io.o
 .vscode/c_cpp_properties.json
+"floor_log"
+"current_state_log"
