@@ -30,7 +30,7 @@ void del_all_orders_on_floor(int floor, int (*orders)[10], int array_size){
             hardware_command_order_light(floor, j, 0);
         }
     }
-    int next_in_queue = 0;                                          //restacks the queue to place valid *orders first
+    int next_in_queue = 0;                                          //restacks the queue to place valid orders first
     for (int c = 0; c < array_size; c++){
         if (*(*orders+c) != -1){
             *(*orders+next_in_queue) = *(*orders+c);

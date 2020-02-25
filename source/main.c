@@ -141,8 +141,8 @@ int main(){
             hardware_command_movement(HARDWARE_MOVEMENT_STOP);
             door_state = 1;
             hardware_command_door_open(door_state);
-            del_all_orders_on_floor(current_floor, &orders, array_size);
             door_state = start_timer(&orders, array_size);
+            del_all_orders_on_floor(current_floor, &orders, array_size);
             hardware_command_door_open(door_state);
             if (door_state){
                 break;
