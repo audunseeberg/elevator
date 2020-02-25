@@ -166,7 +166,6 @@ int main(){
             current_state = elevator_init();
             del_all_orders(&orders, array_size);
             clear_all_order_lights();
-            printf("Stupid elevator got to default state");
             break;
         }
     }   
