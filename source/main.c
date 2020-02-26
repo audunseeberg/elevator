@@ -35,6 +35,8 @@ int main(){
 
     int target_floor;
 
+    int current_dir;
+
     set_timer_duration(3000);
 
      while(1){
@@ -79,10 +81,10 @@ int main(){
                     break;
                 }    
                 if (target_floor == current_floor && !read_current_floor_and_set_floor_light()){
-                    if (current_floor == 3){
+                    if (current_dir == HARDWARE_MOVEMENT_DOWN){
                         current_state = GOING_UP;
                     }
-                    if (current_floor == 0){
+                    if (current_dir == HARDWARE_MOVEMENT_UP){
                         current_state = GOING_DOWN;
                     }
                 }
@@ -98,7 +100,8 @@ int main(){
                 current_state = IDLE;
                 break;
             }
-            hardware_command_movement(HARDWARE_MOVEMENT_UP);
+            current_dir = HARDWARE_MOVEMENT_UP;
+            hardware_command_movement(current_dir);
             poll_orders_and_add_to_queue(&orders, array_size);
             int curr_floor_buffer_up = read_current_floor_and_set_floor_light();
             if (curr_floor_buffer_up){
@@ -118,7 +121,8 @@ int main(){
                 current_state = IDLE;
                 break;
             }
-            hardware_command_movement(HARDWARE_MOVEMENT_DOWN);
+            current_dir = HARDWARE_ORDER_DOWN;
+            hardware_command_movement(current_dir);
             poll_orders_and_add_to_queue(&orders, array_size);
             int curr_floor_buffer_down = read_current_floor_and_set_floor_light();
             if (curr_floor_buffer_down){

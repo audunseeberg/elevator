@@ -20,7 +20,11 @@ int start_timer(int (*orders)[10], int array_size){
     do {
         clock_t time_diff = clock() - start_time;
         time_passed = time_diff * 1000 / CLOCKS_PER_SEC;
-        if (hardware_read_obstruction_signal() || hardware_read_stop_signal()){
+        if (hardware_read_stop_signal()){
+            return 1;
+        }
+        if (hardware_read_obstruction_signal()){
+            poll_orders_and_add_to_queue(orders, array_size);
             return 1;
         }
         poll_orders_and_add_to_queue(orders, array_size);
