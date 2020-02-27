@@ -1,0 +1,100 @@
+\hypertarget{utilities_8h}{}\section{source/utilities.h File Reference}
+\label{utilities_8h}\index{source/utilities.\+h@{source/utilities.\+h}}
+
+
+Various utilities to simplify interaction with hardware.  
+
+
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{utilities_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{utilities_8h_aa19be6305a5a4485e1e70de70ed7d677}\label{utilities_8h_aa19be6305a5a4485e1e70de70ed7d677}} 
+enum \hyperlink{utilities_8h_aa19be6305a5a4485e1e70de70ed7d677}{states} \{ {\bfseries G\+O\+I\+N\+G\+\_\+\+UP}, 
+{\bfseries I\+D\+LE}, 
+{\bfseries G\+O\+I\+N\+G\+\_\+\+D\+O\+WN}, 
+{\bfseries O\+R\+D\+E\+R\+\_\+\+E\+X\+P\+E\+D\+I\+T\+I\+ON}
+ \}\begin{DoxyCompactList}\small\item\em State types used in the F\+SM in {\ttfamily main}. \end{DoxyCompactList}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{utilities_8h_ab8de0eb632b04c75da60e750d632a752}{read\+\_\+current\+\_\+floor\+\_\+and\+\_\+set\+\_\+floor\+\_\+light} ()
+\begin{DoxyCompactList}\small\item\em Checks if any of the floor sensors are active, and sets the corresponding floor light if it is. \end{DoxyCompactList}\item 
+void \hyperlink{utilities_8h_a24f74ff4f31764f7b433abc4f4108534}{poll\+\_\+orders\+\_\+and\+\_\+add\+\_\+to\+\_\+queue} (int($\ast$orders)\mbox{[}10\mbox{]}, int array\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Polls order buttons and adds order to queue, {\ttfamily orders}, if button pressed. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{utilities_8h_afd77151474c3e94d7c52fd75413ae3ca}\label{utilities_8h_afd77151474c3e94d7c52fd75413ae3ca}} 
+void \hyperlink{utilities_8h_afd77151474c3e94d7c52fd75413ae3ca}{clear\+\_\+all\+\_\+order\+\_\+lights} ()
+\begin{DoxyCompactList}\small\item\em Sets all order lights to 0 (off). \end{DoxyCompactList}\item 
+\hyperlink{utilities_8h_aa19be6305a5a4485e1e70de70ed7d677}{states} \hyperlink{utilities_8h_ac7adbe2aa6f2118275091462f56ec972}{elevator\+\_\+init} ()
+\begin{DoxyCompactList}\small\item\em Initializes elevator to a known state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Various utilities to simplify interaction with hardware. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{utilities_8h_ac7adbe2aa6f2118275091462f56ec972}\label{utilities_8h_ac7adbe2aa6f2118275091462f56ec972}} 
+\index{utilities.\+h@{utilities.\+h}!elevator\+\_\+init@{elevator\+\_\+init}}
+\index{elevator\+\_\+init@{elevator\+\_\+init}!utilities.\+h@{utilities.\+h}}
+\subsubsection{\texorpdfstring{elevator\+\_\+init()}{elevator\_init()}}
+{\footnotesize\ttfamily \hyperlink{utilities_8h_aa19be6305a5a4485e1e70de70ed7d677}{states} elevator\+\_\+init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initializes elevator to a known state. 
+
+\begin{DoxyReturn}{Returns}
+Current state. 
+\end{DoxyReturn}
+
+
+Definition at line 38 of file utilities.\+c.
+
+\mbox{\Hypertarget{utilities_8h_a24f74ff4f31764f7b433abc4f4108534}\label{utilities_8h_a24f74ff4f31764f7b433abc4f4108534}} 
+\index{utilities.\+h@{utilities.\+h}!poll\+\_\+orders\+\_\+and\+\_\+add\+\_\+to\+\_\+queue@{poll\+\_\+orders\+\_\+and\+\_\+add\+\_\+to\+\_\+queue}}
+\index{poll\+\_\+orders\+\_\+and\+\_\+add\+\_\+to\+\_\+queue@{poll\+\_\+orders\+\_\+and\+\_\+add\+\_\+to\+\_\+queue}!utilities.\+h@{utilities.\+h}}
+\subsubsection{\texorpdfstring{poll\+\_\+orders\+\_\+and\+\_\+add\+\_\+to\+\_\+queue()}{poll\_orders\_and\_add\_to\_queue()}}
+{\footnotesize\ttfamily void poll\+\_\+orders\+\_\+and\+\_\+add\+\_\+to\+\_\+queue (\begin{DoxyParamCaption}\item[{int($\ast$)}]{orders\mbox{[}10\mbox{]},  }\item[{int}]{array\+\_\+size }\end{DoxyParamCaption})}
+
+
+
+Polls order buttons and adds order to queue, {\ttfamily orders}, if button pressed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em orders} & Pointer to queue. \\
+\hline
+{\em array\+\_\+size} & Size of queue array. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 18 of file utilities.\+c.
+
+\mbox{\Hypertarget{utilities_8h_ab8de0eb632b04c75da60e750d632a752}\label{utilities_8h_ab8de0eb632b04c75da60e750d632a752}} 
+\index{utilities.\+h@{utilities.\+h}!read\+\_\+current\+\_\+floor\+\_\+and\+\_\+set\+\_\+floor\+\_\+light@{read\+\_\+current\+\_\+floor\+\_\+and\+\_\+set\+\_\+floor\+\_\+light}}
+\index{read\+\_\+current\+\_\+floor\+\_\+and\+\_\+set\+\_\+floor\+\_\+light@{read\+\_\+current\+\_\+floor\+\_\+and\+\_\+set\+\_\+floor\+\_\+light}!utilities.\+h@{utilities.\+h}}
+\subsubsection{\texorpdfstring{read\+\_\+current\+\_\+floor\+\_\+and\+\_\+set\+\_\+floor\+\_\+light()}{read\_current\_floor\_and\_set\_floor\_light()}}
+{\footnotesize\ttfamily int read\+\_\+current\+\_\+floor\+\_\+and\+\_\+set\+\_\+floor\+\_\+light (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Checks if any of the floor sensors are active, and sets the corresponding floor light if it is. 
+
+\begin{DoxyReturn}{Returns}
+Floor number if floor sensor active. 0 otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 8 of file utilities.\+c.
+

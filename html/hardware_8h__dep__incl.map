@@ -1,0 +1,7 @@
+<map id="source/hardware.h" name="source/hardware.h">
+<area shape="rect" id="node2" href="$main_8c_source.html" title="source/main.c" alt="" coords="5,155,109,181"/>
+<area shape="rect" id="node3" href="$queue_8h.html" title="Implements queue system for orders. " alt="" coords="194,80,305,107"/>
+<area shape="rect" id="node4" href="$queue_8c_source.html" title="source/queue.c" alt="" coords="134,155,245,181"/>
+<area shape="rect" id="node5" href="$timer_8c_source.html" title="source/timer.c" alt="" coords="269,155,374,181"/>
+<area shape="rect" id="node6" href="$utilities_8c_source.html" title="source/utilities.c" alt="" coords="397,155,515,181"/>
+</map>

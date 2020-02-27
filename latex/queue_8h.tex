@@ -1,0 +1,221 @@
+\hypertarget{queue_8h}{}\section{source/queue.h File Reference}
+\label{queue_8h}\index{source/queue.\+h@{source/queue.\+h}}
+
+
+Implements queue system for orders.  
+
+
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}hardware.\+h\char`\"{}}\newline
+Include dependency graph for queue.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{queue_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{queue_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{queue_8h_add3ac34d70f5081d02bf2b05d19fb70f}{order\+\_\+to\+\_\+int\+\_\+encoding} (int floor, \hyperlink{hardware_8h_a796a8de8ce0ae769d7dbd3327a7bdbe7}{Hardware\+Order} type)
+\begin{DoxyCompactList}\small\item\em Encodes order to corresponding int. \end{DoxyCompactList}\item 
+void \hyperlink{queue_8h_a83a8924c00e2569b5bc6dea377e1fb87}{add\+\_\+order} (int floor, \hyperlink{hardware_8h_a796a8de8ce0ae769d7dbd3327a7bdbe7}{Hardware\+Order} type, int($\ast$orders)\mbox{[}10\mbox{]}, int array\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Adds an order to the queue, {\ttfamily orders}. \end{DoxyCompactList}\item 
+void \hyperlink{queue_8h_a02cca89cc902f09b6e7122879992155d}{del\+\_\+all\+\_\+orders\+\_\+on\+\_\+floor} (int floor, int($\ast$orders)\mbox{[}10\mbox{]}, int array\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Deletes all orders on specified {\ttfamily floor} from the queue, {\ttfamily orders}, then restacks the queue. \end{DoxyCompactList}\item 
+void \hyperlink{queue_8h_a4b29ca8e212d3b7668fc8e0b3e142b77}{del\+\_\+all\+\_\+orders} (int($\ast$orders)\mbox{[}10\mbox{]}, int array\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Deletes all orders in queue, {\ttfamily orders}. \end{DoxyCompactList}\item 
+bool \hyperlink{queue_8h_a51cac483ef97f6cd2b7e87b2567a0f75}{check\+\_\+queue\+\_\+for\+\_\+order} (int floor, \hyperlink{hardware_8h_a796a8de8ce0ae769d7dbd3327a7bdbe7}{Hardware\+Order} type, int($\ast$orders)\mbox{[}10\mbox{]}, int array\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Checks if a specified order is in the queue, {\ttfamily orders}. \end{DoxyCompactList}\item 
+bool \hyperlink{queue_8h_a38ffb6d0024ec63a93785405522def6b}{check\+\_\+for\+\_\+stop} (int floor, \hyperlink{hardware_8h_a2167c399a24df296afc432bcb88228af}{Hardware\+Movement} direction, int($\ast$orders)\mbox{[}10\mbox{]}, int array\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Checks if there are orders in the queue, {\ttfamily orders}, requiring the elevator to stop. \end{DoxyCompactList}\item 
+bool \hyperlink{queue_8h_ae2ecb4ccca712b36ccdd2745c3fb6298}{check\+\_\+if\+\_\+queue\+\_\+empty} (int($\ast$orders)\mbox{[}10\mbox{]})
+\begin{DoxyCompactList}\small\item\em Checks if the queue, {\ttfamily orders}, has any valid orders. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implements queue system for orders. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{queue_8h_a83a8924c00e2569b5bc6dea377e1fb87}\label{queue_8h_a83a8924c00e2569b5bc6dea377e1fb87}} 
+\index{queue.\+h@{queue.\+h}!add\+\_\+order@{add\+\_\+order}}
+\index{add\+\_\+order@{add\+\_\+order}!queue.\+h@{queue.\+h}}
+\subsubsection{\texorpdfstring{add\+\_\+order()}{add\_order()}}
+{\footnotesize\ttfamily void add\+\_\+order (\begin{DoxyParamCaption}\item[{int}]{floor,  }\item[{\hyperlink{hardware_8h_a796a8de8ce0ae769d7dbd3327a7bdbe7}{Hardware\+Order}}]{type,  }\item[{int($\ast$)}]{orders\mbox{[}10\mbox{]},  }\item[{int}]{array\+\_\+size }\end{DoxyParamCaption})}
+
+
+
+Adds an order to the queue, {\ttfamily orders}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em floor} & Floor to add. \\
+\hline
+{\em type} & Order type to add. \\
+\hline
+{\em orders} & Pointer to queue. \\
+\hline
+{\em array\+\_\+size} & Size of queue array. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 12 of file queue.\+c.
+
+\mbox{\Hypertarget{queue_8h_a38ffb6d0024ec63a93785405522def6b}\label{queue_8h_a38ffb6d0024ec63a93785405522def6b}} 
+\index{queue.\+h@{queue.\+h}!check\+\_\+for\+\_\+stop@{check\+\_\+for\+\_\+stop}}
+\index{check\+\_\+for\+\_\+stop@{check\+\_\+for\+\_\+stop}!queue.\+h@{queue.\+h}}
+\subsubsection{\texorpdfstring{check\+\_\+for\+\_\+stop()}{check\_for\_stop()}}
+{\footnotesize\ttfamily bool check\+\_\+for\+\_\+stop (\begin{DoxyParamCaption}\item[{int}]{floor,  }\item[{\hyperlink{hardware_8h_a2167c399a24df296afc432bcb88228af}{Hardware\+Movement}}]{direction,  }\item[{int($\ast$)}]{orders\mbox{[}10\mbox{]},  }\item[{int}]{array\+\_\+size }\end{DoxyParamCaption})}
+
+
+
+Checks if there are orders in the queue, {\ttfamily orders}, requiring the elevator to stop. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em floor} & Current elevator floor. \\
+\hline
+{\em direction} & Current elevator direction. \\
+\hline
+{\em orders} & Pointer to queue. \\
+\hline
+{\em array\+\_\+size} & Size of queue array. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if elevator should stop. 0 otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 63 of file queue.\+c.
+
+\mbox{\Hypertarget{queue_8h_ae2ecb4ccca712b36ccdd2745c3fb6298}\label{queue_8h_ae2ecb4ccca712b36ccdd2745c3fb6298}} 
+\index{queue.\+h@{queue.\+h}!check\+\_\+if\+\_\+queue\+\_\+empty@{check\+\_\+if\+\_\+queue\+\_\+empty}}
+\index{check\+\_\+if\+\_\+queue\+\_\+empty@{check\+\_\+if\+\_\+queue\+\_\+empty}!queue.\+h@{queue.\+h}}
+\subsubsection{\texorpdfstring{check\+\_\+if\+\_\+queue\+\_\+empty()}{check\_if\_queue\_empty()}}
+{\footnotesize\ttfamily bool check\+\_\+if\+\_\+queue\+\_\+empty (\begin{DoxyParamCaption}\item[{int($\ast$)}]{orders\mbox{[}10\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Checks if the queue, {\ttfamily orders}, has any valid orders. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em orders} & Pointer to queue. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if queue empty. 0 otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 70 of file queue.\+c.
+
+\mbox{\Hypertarget{queue_8h_a51cac483ef97f6cd2b7e87b2567a0f75}\label{queue_8h_a51cac483ef97f6cd2b7e87b2567a0f75}} 
+\index{queue.\+h@{queue.\+h}!check\+\_\+queue\+\_\+for\+\_\+order@{check\+\_\+queue\+\_\+for\+\_\+order}}
+\index{check\+\_\+queue\+\_\+for\+\_\+order@{check\+\_\+queue\+\_\+for\+\_\+order}!queue.\+h@{queue.\+h}}
+\subsubsection{\texorpdfstring{check\+\_\+queue\+\_\+for\+\_\+order()}{check\_queue\_for\_order()}}
+{\footnotesize\ttfamily bool check\+\_\+queue\+\_\+for\+\_\+order (\begin{DoxyParamCaption}\item[{int}]{floor,  }\item[{\hyperlink{hardware_8h_a796a8de8ce0ae769d7dbd3327a7bdbe7}{Hardware\+Order}}]{type,  }\item[{int($\ast$)}]{orders\mbox{[}10\mbox{]},  }\item[{int}]{array\+\_\+size }\end{DoxyParamCaption})}
+
+
+
+Checks if a specified order is in the queue, {\ttfamily orders}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em floor} & Floor to look for. \\
+\hline
+{\em type} & Order type to look for. \\
+\hline
+{\em orders} & Pointer to queue. \\
+\hline
+{\em array\+\_\+size} & Size of queue array. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if order in queue. 0 otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 53 of file queue.\+c.
+
+\mbox{\Hypertarget{queue_8h_a4b29ca8e212d3b7668fc8e0b3e142b77}\label{queue_8h_a4b29ca8e212d3b7668fc8e0b3e142b77}} 
+\index{queue.\+h@{queue.\+h}!del\+\_\+all\+\_\+orders@{del\+\_\+all\+\_\+orders}}
+\index{del\+\_\+all\+\_\+orders@{del\+\_\+all\+\_\+orders}!queue.\+h@{queue.\+h}}
+\subsubsection{\texorpdfstring{del\+\_\+all\+\_\+orders()}{del\_all\_orders()}}
+{\footnotesize\ttfamily void del\+\_\+all\+\_\+orders (\begin{DoxyParamCaption}\item[{int($\ast$)}]{orders\mbox{[}10\mbox{]},  }\item[{int}]{array\+\_\+size }\end{DoxyParamCaption})}
+
+
+
+Deletes all orders in queue, {\ttfamily orders}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em orders} & Pointer to queue. \\
+\hline
+{\em array\+\_\+size} & Size of queue array. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 46 of file queue.\+c.
+
+\mbox{\Hypertarget{queue_8h_a02cca89cc902f09b6e7122879992155d}\label{queue_8h_a02cca89cc902f09b6e7122879992155d}} 
+\index{queue.\+h@{queue.\+h}!del\+\_\+all\+\_\+orders\+\_\+on\+\_\+floor@{del\+\_\+all\+\_\+orders\+\_\+on\+\_\+floor}}
+\index{del\+\_\+all\+\_\+orders\+\_\+on\+\_\+floor@{del\+\_\+all\+\_\+orders\+\_\+on\+\_\+floor}!queue.\+h@{queue.\+h}}
+\subsubsection{\texorpdfstring{del\+\_\+all\+\_\+orders\+\_\+on\+\_\+floor()}{del\_all\_orders\_on\_floor()}}
+{\footnotesize\ttfamily void del\+\_\+all\+\_\+orders\+\_\+on\+\_\+floor (\begin{DoxyParamCaption}\item[{int}]{floor,  }\item[{int($\ast$)}]{orders\mbox{[}10\mbox{]},  }\item[{int}]{array\+\_\+size }\end{DoxyParamCaption})}
+
+
+
+Deletes all orders on specified {\ttfamily floor} from the queue, {\ttfamily orders}, then restacks the queue. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em floor} & Floor to delete orders on. \\
+\hline
+{\em orders} & Pointer to queue. \\
+\hline
+{\em array\+\_\+size} & Size of queue array. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 24 of file queue.\+c.
+
+\mbox{\Hypertarget{queue_8h_add3ac34d70f5081d02bf2b05d19fb70f}\label{queue_8h_add3ac34d70f5081d02bf2b05d19fb70f}} 
+\index{queue.\+h@{queue.\+h}!order\+\_\+to\+\_\+int\+\_\+encoding@{order\+\_\+to\+\_\+int\+\_\+encoding}}
+\index{order\+\_\+to\+\_\+int\+\_\+encoding@{order\+\_\+to\+\_\+int\+\_\+encoding}!queue.\+h@{queue.\+h}}
+\subsubsection{\texorpdfstring{order\+\_\+to\+\_\+int\+\_\+encoding()}{order\_to\_int\_encoding()}}
+{\footnotesize\ttfamily int order\+\_\+to\+\_\+int\+\_\+encoding (\begin{DoxyParamCaption}\item[{int}]{floor,  }\item[{\hyperlink{hardware_8h_a796a8de8ce0ae769d7dbd3327a7bdbe7}{Hardware\+Order}}]{type }\end{DoxyParamCaption})}
+
+
+
+Encodes order to corresponding int. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em floor} & Floor to be encoded. \\
+\hline
+{\em type} & Order type to be encoded. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Order as an integer. 
+\end{DoxyReturn}
+
+
+Definition at line 8 of file queue.\+c.
+
