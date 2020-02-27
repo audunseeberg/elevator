@@ -32,3 +32,4 @@ int start_timer(int (*orders)[10], int array_size){
     } while (time_passed < timer_duration);
     return 0;
 };
+
